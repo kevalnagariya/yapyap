@@ -1,0 +1,78 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+build/
+dist/
+.next/
+out/
+.vite/
+.serverless/
+
+# React/Vite/Next
+.client/.cache/
+.client/.next/
+.client/out/
+.client/build/
+.client/public/build/
+
+# Coverage reports
+coverage/
+*.lcov
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# TypeScript
+*.tsbuildinfo
+
+# Test and linting
+.eslintcache
+jest.config.js
+cypress/screenshots/
+cypress/videos/
+playwright-report/
+
+# Temporary files
+*.swp
+*.tmp
+*.bak
+*.log.*
+
+# Misc
+*.tgz
+*.env.backup
+.cache/
+
+# MongoDB dump files
+dump/
+*.mongodb
+*.archive
+
+# Deployment/host configs
+.vercel/
+.netlify/
+firebase.json
+.firebaserc
+firebase-debug.log
