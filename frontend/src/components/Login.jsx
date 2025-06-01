@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthProvider";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import toast from "react-hot-toast";
 
 function Login() {
@@ -21,17 +21,17 @@ function Login() {
     };
 
     axios
-      .post("http://localhost:5002/user/login", userInfo)
+      .post("/api/user/login", userInfo)
       .then((response) => {
         if (response.data) {
           alert("Login successful");
         }
-        localStorage.setItem("ChatApp", JSON.stringify(response.data));
+        localStorage.setItem("YapYap", JSON.stringify(response.data));
         setAuthUser(response.data);
       })
       .catch((error) => {
         if (error.response) {
-          alert("Error: " + error.response.data.error);
+          alert("Error: " + error.response.data.message);
         }
       });
   };
@@ -111,13 +111,13 @@ function Login() {
           </div>
           <p>
             Don't have any Account?{" "}
-            <span
+            <Link
               to={"/signup"}
               className="text-blue-500 underline cursor-pointer ml-1"
             >
               {" "}
               Signup
-            </span>
+            </Link>
           </p>
         </form>
       </div>

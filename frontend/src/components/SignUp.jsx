@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useAuth } from "../context/AuthProvider";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import toast from "react-hot-toast";
 function SignUp() {
   const [authUser, setAuthUser] = useAuth();
@@ -30,7 +30,7 @@ function SignUp() {
 
     console.log(userInfo);
     await axios
-      .post("http://localhost:5002/user/signup", userInfo)
+      .post("/api/user/signup", userInfo)
       .then((response) => {
         if (response.data) {
           alert("Signup successful");
@@ -173,13 +173,10 @@ function SignUp() {
           </div>
           <p>
             Have any Account?{" "}
-            <span
-              to={"/login"}
-              className="text-blue-500 underline cursor-pointer ml-1"
-            >
+            <Link to={"/login"} className="text-blue-500 underline cursor-pointer ml-1">
               {" "}
               Login
-            </span>
+            </Link>
           </p>
         </form>
       </div>
