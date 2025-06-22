@@ -1,7 +1,9 @@
+
 import React, { useState } from "react";
 import { TbLogout2 } from "react-icons/tb";
 import axios from "axios";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 function Logout() {
   const [loading, setLoading] = useState(false);
@@ -9,14 +11,14 @@ function Logout() {
     setLoading(true);
     try {
       const res = await axios.post("/api/user/logout");
-      localStorage.removeItem("ChatApp");
+      localStorage.removeItem("YapYap");
       Cookies.remove("jwt");
       setLoading(false);
-      alert("Logged out successfully");
+      toast.success("Logged out successfully");
       window.location.reload();
     } catch (error) {
       console.log("Error in Logout", error);
-      alert("Error in logging out");
+      toast.error("Error in logging out");
     }
   };
   return (

@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
-// import toast from "react-hot-toast";
+import toast from "react-hot-toast";
 
 function Login() {
   const [authUser, setAuthUser] = useAuth();
@@ -24,14 +24,14 @@ function Login() {
       .post("/api/user/login", userInfo)
       .then((response) => {
         if (response.data) {
-          alert("Login successful");
+          toast.success("Login successful");
         }
         localStorage.setItem("YapYap", JSON.stringify(response.data));
         setAuthUser(response.data);
       })
       .catch((error) => {
         if (error.response) {
-          alert("Error: " + error.response.data.message);
+          toast.error("Error: " + error.response.data.error);
         }
       });
   };
@@ -43,7 +43,7 @@ function Login() {
           className="border border-black px-6 py-2 rounded-md space-y-3 w-96"
         >
           <h1 className="text-2xl items-center text-blue-600 font-bold">
-            YapYap
+            Messenger
           </h1>
           <h2 className="text-2xl items-center">
             Login with your{" "}

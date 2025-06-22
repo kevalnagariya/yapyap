@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useAuth } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
-// import toast from "react-hot-toast";
-function SignUp() {
+import toast from "react-hot-toast";
+function Signup() {
   const [authUser, setAuthUser] = useAuth();
   const {
     register,
@@ -22,25 +22,24 @@ function SignUp() {
 
   const onSubmit = async (data) => {
     const userInfo = {
-      name: data.fullname,                        // ✅ match 'name'
+      fullname: data.fullname,
       email: data.email,
       password: data.password,
-      confirmpassword: data.confirmPassword,      // ✅ match 'confirmpassword'
+      confirmPassword: data.confirmPassword,
     };
-
-    console.log(userInfo);
+    // console.log(userInfo);
     await axios
       .post("/api/user/signup", userInfo)
       .then((response) => {
         if (response.data) {
-          alert("Signup successful");
+          toast.success("Signup successful");
         }
-        localStorage.setItem("yapyap", JSON.stringify(response.data));
+        localStorage.setItem("YapYap", JSON.stringify(response.data));
         setAuthUser(response.data);
       })
       .catch((error) => {
         if (error.response) {
-          alert("Error: " + error.response.data.message);
+          toast.error("Error: " + error.response.data.error);
         }
       });
   };
@@ -52,14 +51,14 @@ function SignUp() {
           className="border border-black px-6 py-2 rounded-md space-y-3 w-96"
         >
           <h1 className="text-2xl items-center text-blue-600 font-bold">
-            YapYap
+            Messenger
           </h1>
 
           <h2 className="text-2xl items-center">
             Create a new{" "}
             <span className="text-blue-600 font-semibold">Account</span>
           </h2>
-
+         
           {/* Fullname */}
           <label className="input input-bordered flex items-center gap-2">
             <svg
@@ -165,23 +164,26 @@ function SignUp() {
 
           {/* Text & Button */}
           <div className="flex justify-center">
-            <input
-              type="submit"
-              value="Signup"
-              className="text-white bg-blue-600 cursor-pointer w-full rounded-lg py-2"
-            ></input>
-          </div>
-          <p>
-            Have any Account?{" "}
-            <Link to={"/login"} className="text-blue-500 underline cursor-pointer ml-1">
-              {" "}
-              Login
-            </Link>
-          </p>
+              <input
+                type="submit"
+                value="Signup"
+                className="text-white bg-blue-600 cursor-pointer w-full rounded-lg py-2"
+              ></input>
+            </div>
+            <p>
+              Have any Account?{" "}
+              <Link
+                to={"/login"}
+                className="text-blue-500 underline cursor-pointer ml-1"
+              >
+                {" "}
+                Login
+              </Link>
+            </p>
         </form>
       </div>
     </>
   );
 }
 
-export default SignUp;
+export default Signup;

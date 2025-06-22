@@ -7,11 +7,11 @@ function Message({ message }) {
   const chatName = itsMe ? " chat-end" : "chat-start";
   const chatColor = itsMe ? "bg-blue-500" : "";
 
-  // const createdAt = new Date(message.createdAt);
-  // const formattedTime = createdAt.toLocaleTimeString([], {
-  //   hour: "2-digit",
-  //   minute: "2-digit",
-  // });
+  const createdAt = new Date(message.createdAt);
+  const formattedTime = createdAt.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   return (
     <>
       <div>
